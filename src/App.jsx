@@ -6,10 +6,12 @@ const App = () => {
   return (
     <>
       <Navbar />
-     <div>
-       <Routes>
+     <div className="flex flex-col min-h-screen">
+       <main className="grow">
+         <Routes>
         <Route path="/" element={<Hero />} />
       </Routes>
+       </main>
      </div>
     </>
   );
