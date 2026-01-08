@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_KEY = "787f414598feb984a0fa37fa51d8d019";
+const API_KEY = import.meta.env.VITE_WEATHER_API_KEY || "787f414598feb984a0fa37fa51d8d019";
 const BASE_URL = "https://api.openweathermap.org/data/2.5/weather";
 
 export const fetchWeatherData = async (city) => {
@@ -14,6 +14,12 @@ export const fetchWeatherData = async (city) => {
     });
     return response.data;
   } catch (error) {
-    throw new Error(error.response?.data?.message || "City not found");
+    if (error.response?.data?.message) {
+      throw new Error(error.response.data.message);
+    } else if (error.request) {
+      throw new Error("Network error. Please check your internet connection.");
+    } else {
+      throw new Error("An unexpected error occurred. Please try again.");
+    }
   }
 };

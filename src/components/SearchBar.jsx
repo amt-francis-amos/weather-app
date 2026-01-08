@@ -2,7 +2,7 @@ import React from "react";
 import { Search, Loader2 } from "lucide-react";
 
 const SearchBar = ({ city, setCity, onSearch, loading }) => {
-  const handleKeyPress = (e) => {
+  const handleKeyDown = (e) => {
     if (e.key === 'Enter') {
       onSearch();
     }
@@ -16,7 +16,7 @@ const SearchBar = ({ city, setCity, onSearch, loading }) => {
           placeholder="Enter city name..."
           value={city}
           onChange={(e) => setCity(e.target.value)}
-          onKeyPress={handleKeyPress}
+          onKeyDown={handleKeyDown}
           className="flex-1 px-3 py-2 sm:px-4 sm:py-2.5 rounded-lg border-2 border-gray-200 focus:border-blue-500 focus:outline-none text-gray-700 text-sm"
         />
         <button
